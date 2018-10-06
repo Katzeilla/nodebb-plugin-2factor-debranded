@@ -1,0 +1,32 @@
+{
+	"id": "nodebb-plugin-2factor",
+	"url": "https://github.com/NodeBB/nodebb-plugin-2factor",
+	"library": "./library.js",
+	"hooks": [
+		{ "hook": "static:app.load", "method": "init" },
+		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
+		{ "hook": "filter:user.profileMenu", "method": "addProfileItem" },
+		{ "hook": "filter:router.page", "method": "check" },
+		{ "hook": "static:user.loggedOut", "method": "clearSession" },
+		{ "hook": "filter:middleware.render", "method": "updateTitle" },
+		{ "hook": "filter:messaging.canGetMessages", "method": "restrictMessages" },
+		{ "hook": "static:messaging.canMessageRoom", "method": "restrictMessageSending" }
+	],
+	"staticDirs": {
+		"static": "./static"
+	},
+	"less": [
+		"static/style.less"
+	],
+	"scripts": [
+		"static/lib/login.js",
+		"static/lib/backup-code.js",
+		"static/lib/settings.js"
+	],
+	"acpScripts": [
+		"static/lib/admin.js"
+	],
+	"templates": "static/templates",
+	"languages": "languages",
+	"defaultLang": "en-GB"
+}
